@@ -1,0 +1,21 @@
+{
+  "name": "taylornetwork/api-model",
+  "description": "Model with API functionality",
+  "require": {
+    "php": ">=5.4.0",
+    "laravel/framework": "^5.4",
+    "taylornetwork/api": "^0.1",
+    "torann/remote-model": "^0.2.1"
+  },
+  "authors": [
+    {
+      "name": "Sam Taylor",
+      "email": "sam@taylornetwork.ca"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "TaylorNetwork\\ApiModel\\": "src/"
+    }
+  }
+}
