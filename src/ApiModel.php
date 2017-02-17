@@ -2,10 +2,10 @@
 
 namespace TaylorNetwork\ApiModel;
 
-use Torann\RemoteModel\Model as RemoteModel;
+use Illuminate\Database\Eloquent\Model;
 use TaylorNetwork\API\API;
 
-class ApiModel extends RemoteModel
+class ApiModel extends Model
 {
     /**
      * API Instance
@@ -24,18 +24,10 @@ class ApiModel extends RemoteModel
     /**
      * @inheritdoc
      */
-    protected function request($endpoint = null, $method, $params = null)
+    public function find($id)
     {
-        if (!empty($params))
-        {
-            $results = $this->getAPI()->{$this->driver}($method, $params);
-        }
-        else
-        {
-            $results = $this->getAPI()->{$this->driver}($method);
-        }
-
-        return $results ? $this->newInstance($results) : null;
+        $this->fill($this->getAPI()->{$this->driver}('find', [ 'id' => $id ])->decodeContent(true));
+        return $this;
     }
 
     /**
