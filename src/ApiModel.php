@@ -29,6 +29,21 @@ class ApiModel extends Model
         $this->fill($this->getAPI()->{$this->driver}('find', [ 'id' => $id ])->decodeContent(true));
         return $this;
     }
+    
+    public function getAll()
+    {
+        $collection = [];
+        
+        $array = $this->getAPI()->{$this->driver}('all')->decodeContent(true);
+        
+        foreach($array as $data)
+        {
+            $collection[] = (new $this)->fill($data);
+        }
+        
+        return collect($collection);
+    }
+    
 
     /**
      * @inheritdoc
